@@ -6,7 +6,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 
 
 
-function Login(props) {
+function Login({navigation}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
@@ -25,19 +25,19 @@ function Login(props) {
         }
     }
 
-    const signUp = async () => {
-        setLoading(true);
-        try {
-            const response = await createUserWithEmailAndPassword(auth, email, password);
-            console.log(response)
-            alert("Signed up!")
-        } catch (error) {
-            console.log(error)
-            alert(error.message)
-        } finally {
-            setLoading(false);
-        }
-    }
+    // const signUp = async () => {
+    //     setLoading(true);
+    //     try {
+    //         const response = await createUserWithEmailAndPassword(auth, email, password);
+    //         console.log(response)
+    //         alert("Signed up!")
+    //     } catch (error) {
+    //         console.log(error)
+    //         alert(error.message)
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // }
 
     return (
         <View style={styles.container}>
@@ -59,7 +59,7 @@ function Login(props) {
             <TouchableOpacity style={styles.button} onPress={() => signIn()}>
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => signUp()}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('CreateProfile')}>
                 <Text style={styles.buttonText}>Sign up</Text>
             </TouchableOpacity>
             </>
